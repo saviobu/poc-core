@@ -1,13 +1,13 @@
 from django.http.response import HttpResponse
 from django.views.generic.list import ListView
 from django.views import View
-from usersservices import UserServices
+from .usersservices import UsersServices
 
 
 class UserList(ListView):
     def get(self, *args, **kwargs):
         try:
-            response = UserServices.all_users()
+            response = UsersServices.all_users()
             return HttpResponse(response)
         
         except ValueError as exp:
@@ -18,7 +18,7 @@ class UserList(ListView):
 class UserDetails(View):
     def get(self, *args, **kwargs):
         try:
-            response = UserServices.user_details(kwargs.get('id'))
+            response = UsersServices.user_details(kwargs.get('id'))
             return HttpResponse(response)
         except ValueError as exp:
             return HttpResponse(f'User not found ! Error: {exp}'), 500

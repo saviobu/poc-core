@@ -1,7 +1,7 @@
-from models import User, UserSerialize
+from .models import User, UserSerialize
 
 
-class UserServices:
+class UsersServices:
     def all_users(self):
         model = User.objects.all()
         return UserSerialize.data(model)
