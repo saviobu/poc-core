@@ -5,7 +5,9 @@ from itertools import chain
 
 
 class TransactionServices:
-    def list_user_transactions (self, request):
+
+    @staticmethod
+    def list_user_transactions (request):
         try:
             data = ListTransactionSerializer.data(request.body)
             id = data.get('user_id')
@@ -35,7 +37,8 @@ class TransactionServices:
             return exc
 
 
-    def transactions_summary (self, id):
+    @staticmethod
+    def transactions_summary (id):
         try:
             
             response = Transaction.objects.select_related('account_id').filter(account_id__user_id = int(id))\
@@ -59,6 +62,7 @@ class TransactionServices:
             return exc
     
 
+    @staticmethod
     def bulk_transactions(request):
         cont = 1
         try:
@@ -75,6 +79,8 @@ class TransactionServices:
 
 
 class AddTransactions:
+
+    @staticmethod
     def add_transactions(data):
         try:
         

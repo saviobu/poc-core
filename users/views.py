@@ -28,7 +28,7 @@ class UserDetails(View):
 class NewUser(View):
     def post(self,*args, **kwargs):
         try:
-            response = UserServices.new_user(self.request)
+            response = UsersServices.new_user(self.request)
             return HttpResponse(response)
         except ValueError as exp:
             return HttpResponse(f'Error creating user ! Error: {exp}'), 500

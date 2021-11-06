@@ -2,20 +2,22 @@ from .models import User, UserSerialize
 
 
 class UsersServices:
-    def all_users(self):
+    
+    @staticmethod
+    def all_users():
         model = User.objects.all()
         return UserSerialize.data(model)
 
-
-    def user_details(self, id):
+    @staticmethod
+    def user_details(id):
         try:
             model = User.objects.filter(user_id = int(id))
             return UserSerialize.data(model)
         except ValueError as exc:
             return exc
 
-
-    def new_user(self, request):
+    @staticmethod
+    def new_user(request):
         try:
             data = UserSerialize.data(request.body)
             _name = data.get('name')
