@@ -63,22 +63,6 @@ class TransactionServices:
             return exc
     
 
-    @staticmethod
-    def bulk_transactions(request):
-        cont = 1
-        try:
-                
-            block = list(TransactionSerializer.data(request.body))
-            for data in block:
-                AddTransactions.add_transactions(data)
-                cont += 1
-
-            return f'Success, {cont} transactions inserted !'
-        
-        except ValueError as exc:
-            return exc
-
-
 class AddTransactions:
 
     @staticmethod
