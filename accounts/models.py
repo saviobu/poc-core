@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models.fields.related import ForeignKey
 from users.models import User
-from rest_framework import serializers
 
 
 class Account(models.Model):
@@ -17,21 +16,3 @@ class Transaction(models.Model):
     amount = models.FloatField()
     type = models.CharField(max_length=7, choices=(('O', 'Outflow'),('I', 'Inflow')))
     category = models.CharField(max_length=20)
-
-
-class AccountSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Account 
-        fields = ('user_id')
-
-
-class TransactionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Transaction
-        fields = ('account_id', 'amount', 'category')
-
-
-class ListTransactionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Account
-        fields = ('user_id', 'initial_date', 'final_date')

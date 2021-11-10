@@ -26,48 +26,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework_swagger',
     'rest_framework',
-    'rest_framework.authtoken',
     'accounts',
     'users',
 ]
 
+
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-    'NON_FIELD_ERRORS_KEY': 'Error',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
 
-JWT_AUTH = {
-     'JWT_ALLOW_REFRESH': True,
-     'JWT_EXPIRATION_DELTA': timedelta(days=1),
-     'JWT_VERIFY': True,
-     'JWT_VERIFY_EXPIRATION': True,
-     'JWT_AUTH_HEADER_PREFIX': 'Bearer'
-    }
-
-
-SWAGGER_SETTINGS = {
-    "exclude_namespaces": [],  
-    "SUPPORTED_SUBMIT_METHODS": [ 'get','post','put','delete'],
-    'SECURITY_DEFINITIONS': {
-        'api_key': {
-            'type': 'apiKey',
-            'in': 'header',
-            'name': 'Authorization'
-        }
-    },
-    'USE_SESSION_AUTH': True,
-    'JSON_EDITOR': True,
-    'REFETCH_SCHEMA_ON_LOGOUT': True
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
